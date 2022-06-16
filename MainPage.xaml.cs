@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -26,22 +27,36 @@ namespace HangManWithGameClass
     public sealed partial class MainPage : Page
     {
         private Game hangman;
+        private Rect win;
+        private TextBlock tx;
         public MainPage()
         {
             this.InitializeComponent();
+
             hangman = new Game();
-            Alert(hangman.Word);
-            hangman.GuessLetter('l');
+            win = ApplicationView.GetForCurrentView().VisibleBounds;
+            ExampleGuess();
+            tx = GenerateExmpTextBox();
+            Can.Children.Add(tx);
+            tx.Text += hangman.TotalGuessCount;
+
+        }
+
+        public void ExampleGuess() 
+        {
+            hangman.GuessLetter('e');
             hangman.GuessLetter('a');
             hangman.GuessLetter('e');
             hangman.GuessLetter('i');
-            Alert(hangman.CorrectGuessedCharecters.ToString());
-            
         }
 
-        public async void Alert(string st) 
+        public TextBlock GenerateExmpTextBox ()
         {
-            await new MessageDialog(st).ShowAsync();
+            TextBlock txb = new TextBlock();
+            Canvas.SetLeft(txb, win.Width / 2);
+            Canvas.SetTop(txb, win.Height / 2);
+            txb.Text = hangman.GetCurrent();
+            return txb;
         }
     }
 }

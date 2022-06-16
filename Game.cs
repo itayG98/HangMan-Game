@@ -29,10 +29,10 @@ namespace HangManWithGameClass
             get { return _word.Length; }
         }
 
-        public StringBuilder Current
+        private StringBuilder Current
         {
             get { return _current; }
-            private set { _current = value; }
+            set { _current = value; }
         }
 
         public int FailsCount
@@ -64,7 +64,8 @@ namespace HangManWithGameClass
             _random = new Random();
             _vocabulary = new string[] {
             "doctor", "solider", "Policeman", "bartender", "dentist", "pharmacist", "physician",
-                "veterinarian","teacher", "lawyer", "accountant", "paramedic", "Nurse ,architect"};
+                "veterinarian","teacher", "lawyer", "accountant", "paramedic", "Nurse ,architect"
+                ,"waiter","painter","photographer"};
         }
         public Game()
         {
@@ -82,11 +83,13 @@ namespace HangManWithGameClass
 
         public bool GuessLetter(char g)
         {
-            if (!Char.IsLetter(g) || IsLost())
+            if (!char.IsLetter(g) || IsLost())
             {
                 return false;
             }
-            g = Char.ToLower(g);
+
+
+            g = char.ToLower(g);
             TotalGuessedCharecters[TotalGuessCount] = g;
             TotalGuessCount++;
             if (Word.IndexOf(g) != -1)
@@ -101,7 +104,7 @@ namespace HangManWithGameClass
                 }
                 return true;
             }
-            else 
+            else
             {
                 FailsCount++;
                 return false;
@@ -112,15 +115,25 @@ namespace HangManWithGameClass
         /* Genarate a random word in lower case*/
         {
             Word = _vocabulary[_random.Next(0, _vocabulary.Length)].ToLower();
-            Current.Append('_' * WordLength);
+            Current.Append('_',WordLength);
 
         }
         public bool IsLost()
         {
             return _failsCount >= MAXFAILURES;
         }
+
+        public string GetCurrent() 
+        {
+            return Current.ToString() ;
+        }
     }
 }
+
+
+
+
+
 
 /*        private static string[] readWordsFromFile()
 
