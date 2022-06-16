@@ -50,6 +50,7 @@ namespace HangManWithGameClass
         public char[] TotalGuessedCharecters
         {
             get { return _totalguessedCharecters; }
+            private set { _correctGuessedCharecters = value; }
         }
 
         public char[] CorrectGuessedCharecters
@@ -86,9 +87,11 @@ namespace HangManWithGameClass
                 return false;
             }
             g = Char.ToLower(g);
+            TotalGuessedCharecters[TotalGuessCount] = g;
             TotalGuessCount++;
             if (Word.IndexOf(g) != -1)
             {
+                CorrectGuessedCharecters[TotalGuessCount - FailsCount - 1] = g;
                 for (int i = 0; i < WordLength; i++)
                 {
                     if (Word[i] == g)
@@ -96,16 +99,21 @@ namespace HangManWithGameClass
                         Current[i] = g;
                     }
                 }
+                return true;
             }
-
-            return false;
+            else 
+            {
+                FailsCount++;
+                return false;
+            }
         }
 
         public void GenarateWord()
         /* Genarate a random word in lower case*/
         {
             Word = _vocabulary[_random.Next(0, _vocabulary.Length)].ToLower();
-            Current.Append('_' * Word.Length);
+            Current.Append('_' * WordLength);
+
         }
         public bool IsLost()
         {
