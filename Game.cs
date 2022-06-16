@@ -1,29 +1,38 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 
 namespace HangManWithGameClass
 {
     public class Game
     {
-        private string _currentWord;
-        private char[] _TotalguessedCharecters = new char[EnglishCharecters];
+        private string _word;
+        public StringBuilder _current;
+        private char[] _totalguessedCharecters = new char[EnglishCharecters];
         private char[] _correctGuessedCharecters;
         private int _failsCount;
         private int _totalGuessCount;
-        private static Random _random;
+
         private const int EnglishCharecters = 26;
         private const int MAXFAILURES = 10;
+        private static Random _random;
         private static readonly string[] _vocabulary;
 
-        public string CurrentWord
+        public string Word
         {
-            get { return _currentWord; }
-            private set { _currentWord = value; }
+            get { return _word; }
+            private set { _word = value; }
         }
 
-        public int CurrentWordLength
+        public int WordLength
         {
-            get { return _currentWord.Length; }
+            get { return _word.Length; }
+        }
+
+        public StringBuilder Current
+        {
+            get { return _current; }
+            private set { _current = value; }
         }
 
         public int FailsCount
@@ -40,7 +49,7 @@ namespace HangManWithGameClass
 
         public char[] TotalGuessedCharecters
         {
-            get { return _TotalguessedCharecters; }
+            get { return _totalguessedCharecters; }
         }
 
         public char[] CorrectGuessedCharecters
@@ -58,10 +67,18 @@ namespace HangManWithGameClass
         }
         public Game()
         {
+            Current = new StringBuilder();
+            NewGme();
+        }
+
+        private void NewGme()
+        {
             GenarateWord();
+            CorrectGuessedCharecters = new char[WordLength];
             FailsCount = 0;
             TotalGuessCount = 0;
         }
+
         public bool GuessLetter(char g)
         {
             if (!Char.IsLetter(g) || IsLost())
@@ -69,34 +86,26 @@ namespace HangManWithGameClass
                 return false;
             }
             g = Char.ToLower(g);
-            AddGuesedCharecter(g);
-            int index = CurrentWord.IndexOf(g);
-            if (index != -1)
+            TotalGuessCount++;
+            if (Word.IndexOf(g) != -1)
             {
-                CorrectGuessedCharecters[index] = g;
-                return true;
+                for (int i = 0; i < WordLength; i++)
+                {
+                    if (Word[i] == g)
+                    {
+                        Current[i] = g;
+                    }
+                }
             }
-            else
-            {
-                FailsCount++;
-                return false;
-            }
-        }
 
-        private void AddGuesedCharecter(char g)
-        {
-            if (Char.IsLetter(g))
-            {
-                _TotalguessedCharecters[TotalGuessCount] = g;
-                TotalGuessCount++;
-            }
+            return false;
         }
 
         public void GenarateWord()
         /* Genarate a random word in lower case*/
         {
-            CurrentWord = _vocabulary[_random.Next(0, _vocabulary.Length)].ToLower();
-            _correctGuessedCharecters = new char[CurrentWord.Length];
+            Word = _vocabulary[_random.Next(0, _vocabulary.Length)].ToLower();
+            Current.Append('_' * Word.Length);
         }
         public bool IsLost()
         {

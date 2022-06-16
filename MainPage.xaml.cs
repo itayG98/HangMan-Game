@@ -30,7 +30,13 @@ namespace HangManWithGameClass
         {
             this.InitializeComponent();
             hangman = new Game();
-            Alert(hangman.CurrentWord);
+            Alert(hangman.Word);
+            hangman.GuessLetter('l');
+            hangman.GuessLetter('a');
+            hangman.GuessLetter('e');
+            hangman.GuessLetter('i');
+            Alert(hangman.CorrectGuessedCharecters.ToString());
+            
         }
 
         public async void Alert(string st) 
