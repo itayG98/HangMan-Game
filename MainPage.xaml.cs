@@ -48,6 +48,14 @@ namespace HangManWithGameClass
             hangman.GuessLetter('a');
             hangman.GuessLetter('e');
             hangman.GuessLetter('i');
+            hangman.GuessLetter('e');
+            hangman.GuessLetter('a');
+            hangman.GuessLetter('e');
+            hangman.GuessLetter('i');
+            hangman.GuessLetter('e');
+            hangman.GuessLetter('a');
+            hangman.GuessLetter('e');
+            hangman.GuessLetter('i');
         }
 
         public TextBlock GenerateExmpTextBox ()

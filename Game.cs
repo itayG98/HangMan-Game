@@ -6,8 +6,11 @@ namespace HangManWithGameClass
 {
     public class Game
     {
+        private enum GameState { Lost, Winnery, Play }
+        private GameState state;
+        private bool IsLost;
         private string _word;
-        public StringBuilder _current;
+        private StringBuilder _current;
         private char[] _totalguessedCharecters = new char[EnglishCharecters];
         private char[] _correctGuessedCharecters;
         private int _failsCount;
@@ -75,57 +78,63 @@ namespace HangManWithGameClass
 
         private void NewGme()
         {
+            IsLost = false;
             GenarateWord();
             CorrectGuessedCharecters = new char[WordLength];
             FailsCount = 0;
             TotalGuessCount = 0;
         }
 
-        public bool GuessLetter(char g)
+        public void GuessLetter(char g)
         {
-            if (!char.IsLetter(g) || IsLost())
+            if (char.IsLetter(g) && state == GameState.Play)
             {
-                return false;
-            }
+                g = char.ToLower(g);
+                /*TODO Non repetative addidng*/
+                TotalGuessedCharecters[TotalGuessCount] = g;
+                TotalGuessCount++;
 
-
-            g = char.ToLower(g);
-            TotalGuessedCharecters[TotalGuessCount] = g;
-            TotalGuessCount++;
-            if (Word.IndexOf(g) != -1)
-            {
-                CorrectGuessedCharecters[TotalGuessCount - FailsCount - 1] = g;
-                for (int i = 0; i < WordLength; i++)
+                if (Word.IndexOf(g) != -1)
                 {
-                    if (Word[i] == g)
+                    CorrectGuessedCharecters[TotalGuessCount - FailsCount - 1] = g;
+                    for (int i = 0; i < WordLength; i++)
                     {
-                        Current[i] = g;
+                        if (Word[i] == g)
+                        {
+                            Current[i] = g;
+                        }
                     }
                 }
-                return true;
+                else
+                {
+                    FailsCount++;
+                }
             }
-            else
-            {
-                FailsCount++;
-                return false;
-            }
+            CheckGame();
         }
 
         public void GenarateWord()
         /* Genarate a random word in lower case*/
         {
             Word = _vocabulary[_random.Next(0, _vocabulary.Length)].ToLower();
-            Current.Append('_',WordLength);
+            Current.Append('_', WordLength);
 
         }
-        public bool IsLost()
+        public void CheckGame()
         {
-            return _failsCount >= MAXFAILURES;
+            if (_failsCount >= MAXFAILURES)
+            {
+                state = GameState.Lost;
+            }
+            else if (Word == Current.ToString())
+            {
+                state = GameState.Winnery;
+            }
         }
 
-        public string GetCurrent() 
+        public string GetCurrent()
         {
-            return Current.ToString() ;
+            return Current.ToString();
         }
     }
 }
