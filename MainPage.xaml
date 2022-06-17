@@ -15,20 +15,29 @@
             <RowDefinition x:Name="Down" />
         </Grid.RowDefinitions>
 
-        <Canvas x:Name="HangManCan" Grid.Row="0">
+        <Canvas x:Name="HangManCan" Grid.Row="0" Background="Bisque">
             <!-- HangMan can -->
 
         </Canvas>
 
-        <Grid x:Name="KeysGrid" Grid.Row="1">
+        <Grid x:Name="KeysGrid" Grid.Row="1" Background="LightGreen" Padding="10">
             <!-- Keys grid  -->
             <Grid.RowDefinitions>
-                <RowDefinition  Height="Auto" />
-                <RowDefinition  Height="Auto" />
-                <RowDefinition  Height="Auto" />
-                <RowDefinition  Height="Auto" />
+                <RowDefinition  Height="1*" />
+                <RowDefinition  Height="1*" />
+                <RowDefinition  Height="1*" />
+                <RowDefinition  Height="1*" />
             </Grid.RowDefinitions>
-            
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
         </Grid>
         
     </Grid>
