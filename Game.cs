@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 
 namespace HangManWithGameClass
@@ -14,22 +13,22 @@ namespace HangManWithGameClass
         private char[] _correctGuessedCharecters;
         private int _failsCount;
         private int _totalGuessCount;
-        private int _level = 1;
+        private int _level;
 
         private const int EnglishCharecters = 26;
         private const int MAXFAILURES = 10;
         private static Random _random;
         private static readonly string[] _vocabulary;
 
-        public string Word
+        private string Word
         {
             get { return _word; }
-            private set { _word = value; }
+            set { _word = value; }
         }
 
         public int WordLength
         {
-            get { return _word.Length; }
+            get { return Word.Length; }
         }
 
         private StringBuilder Current
@@ -53,10 +52,10 @@ namespace HangManWithGameClass
         public int Level
         {
             get { return _level; }
-            private set { _level = value <= 0 || value >= 5 ? value : 1;  } 
+            private set { _level = value <= 0 || value >= 5 ? 1 : value; }
         }
 
-        public GameState State 
+        public GameState State
         {
             get { return _state; }
         }
@@ -89,26 +88,26 @@ namespace HangManWithGameClass
 
         public Game()
         {
-            Current = new StringBuilder();
             NewGme();
         }
 
         public void NewGme()
         /*Initilize the new game state or replay it*/
         {
-            _state = GameState.Play;
-            Current = new StringBuilder();
-            GenarateWord();
-            CorrectGuessedCharecters = new char[WordLength];
+            Level = 1;
             FailsCount = 0;
             TotalGuessCount = 0;
+            _state = GameState.Play;
+            TotalGuessedCharecters = new char[EnglishCharecters];
+            GenarateWord();
+            CorrectGuessedCharecters = new char[WordLength];
         }
 
         public void GuessLetter(char g)
         /*Check letter IFF the game is playing , its a letter and didnt guessed it already
          Then update game state if needed calling CheckGame methods */
         {
-            if (_state == GameState.Play && char.IsLetter(g) && !IsGuessed(g))
+            if (!IsGuessed(g) && State == GameState.Play && char.IsLetter(g))
             {
                 g = char.ToLower(g);
                 TotalGuessedCharecters[TotalGuessCount] = g;
@@ -126,7 +125,7 @@ namespace HangManWithGameClass
                 }
                 else
                 {
-                    FailsCount+=_level;
+                    FailsCount += Level;
                 }
             }
             CheckGame();
@@ -135,10 +134,10 @@ namespace HangManWithGameClass
         private bool IsGuessed(char g)
         /*Return whether the letter already guessed*/
         {
-            Char.ToLower(g);
-            foreach(char letter in TotalGuessedCharecters) 
+            char.ToLower(g);
+            foreach (char letter in TotalGuessedCharecters)
             {
-                if (letter == g) 
+                if (letter == g)
                 {
                     return true;
                 }
@@ -150,6 +149,7 @@ namespace HangManWithGameClass
         /* Genarate a random word in lower case*/
         {
             Word = _vocabulary[_random.Next(0, _vocabulary.Length)].ToLower();
+            Current = new StringBuilder("");
             Current.Append('_', WordLength);
 
         }
@@ -175,18 +175,3 @@ namespace HangManWithGameClass
 }
 
 
-
-
-/*        private static string[] readWordsFromFile()
-
-        //Reads the names text file for the vocalulary
-        //the seperator ", "
-        //Origanly from https://github.com/aruljohn/popular-baby-names/blob/master/2020/boy_names_2020.json
-        //I've saved this data as txt in the Debug/.Net6 directory in order to play enven when 
-        // disconected to the internet.
-        {
-            string st = File.ReadAllText(@"\NamesText.txt");
-            string separator = @""", """;
-            string[] wordsToReturn = st.Split(separator, StringSplitOptions.None);
-            return wordsToReturn;
-        }*/

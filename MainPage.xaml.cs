@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Media;
 namespace HangManWithGameClass
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// HangMan UWP game
     /// </summary>
     /// 
     // Color template https://colorhunt.co/palette/9eb23bc7d36ffcf9c6e0deca 
@@ -16,16 +16,15 @@ namespace HangManWithGameClass
     public sealed partial class MainPage : Page
     {
         private Game hangman;
-        private TextBlock tx;
         public MainPage()
         {
             this.InitializeComponent();
+            CreateEventForBtn();
             /*Sets the colours*/
             HangManGrid.Background = new SolidColorBrush(Color.FromArgb(200, 252, 249, 198));
             KeysGrid.Background = new SolidColorBrush(Color.FromArgb(200, 158, 178, 59));
 
             hangman = new Game();
-            CreateEventForBtn();
             UpdateGame();
         }
         public void CreateEventForBtn()
@@ -39,31 +38,40 @@ namespace HangManWithGameClass
 
         private void Btn_Click(object sender, RoutedEventArgs e)
         {
-            Button b = (Button)sender;
-            bool isLetter = char.TryParse(b.Name, out char letter);
+            if (hangman.State == Game.GameState.Play)
+            {
+                Button b = (Button)sender;
+                bool isLetter = char.TryParse(b.Name, out char letter);
 
-            if (isLetter)
-            {
-                hangman.GuessLetter(letter);
-            }
-            else
-            {
-                string key = b.Name;
-                if (key == "Change Level")
+                if (isLetter)
                 {
-                    hangman.ChangeLevel();
+                    hangman.GuessLetter(letter);
                 }
-                else if (key == "Replay")
+                else
                 {
-                    hangman.NewGme();
+                    string key = b.Name;
+                    if (key == "Level")
+                    {
+                        hangman.ChangeLevel();
+                    }
+                    else if (key == "Replay")
+                    {
+                        hangman.NewGme();
+                    }
                 }
+                UpdateGame();
             }
-            UpdateGame();
+            else 
+            {
+                hangman.NewGme();
+                UpdateGame();
+            }
         }
 
         public void UpdateGame()
         {
             CurretWord.Text = hangman.GetCurrentString();
+            LevelHeadLine.Text = $"Level : {hangman.Level}\n{hangman.WordLength} letrers";
             switch (hangman.State)
             {
                 case Game.GameState.Winnery:
