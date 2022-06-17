@@ -7,8 +7,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid x:Name="FatherGrid">
+    
+    
+    <Page.Resources>
+        <Style TargetType="Button" x:Key="KeyBoard">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="MinHeight" Value="50"/>
+            <Setter Property="MinWidth" Value="50"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Page.Resources>
+    
+    
+            <Grid x:Name="FatherGrid">
         <!-- Page grid separated into 2 -->
         <Grid.RowDefinitions>
             <RowDefinition x:Name="Up" />
@@ -23,8 +35,9 @@
             </Grid.ColumnDefinitions>
         </Grid>
 
-        <Grid x:Name="KeysGrid" Grid.Row="1" Background="LightGreen" Padding="10">
+        <Grid x:Name="KeysGrid" Grid.Row="1" Background="LightGreen">
             <!-- Keys grid  -->
+
             <Grid.RowDefinitions>
                 <RowDefinition  Height="1*" />
                 <RowDefinition  Height="1*" />
@@ -41,7 +54,40 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
+
+            <Button Style="{StaticResource KeyBoard}" Grid.Row="0" Grid.Column="0" x:Name="A" />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="0" Grid.Column="1" x:Name="B"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="0" Grid.Column="2" x:Name="C"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="0" Grid.Column="3" x:Name="D"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="0" Grid.Column="4" x:Name="E"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="0" Grid.Column="5" x:Name="F"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="0" Grid.Column="6" x:Name="G"  />
+                     
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="1" Grid.Column="0" x:Name="H"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="1" Grid.Column="1" x:Name="I"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="1" Grid.Column="2" x:Name="J"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="1" Grid.Column="3" x:Name="K"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="1" Grid.Column="4" x:Name="L"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="1" Grid.Column="5" x:Name="M"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="1" Grid.Column="6" x:Name="N"  />
+                      
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="2" Grid.Column="0" x:Name="O"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="2" Grid.Column="1" x:Name="P"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="2" Grid.Column="2" x:Name="Q"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="2" Grid.Column="3" x:Name="R"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="2" Grid.Column="4" x:Name="S"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="2" Grid.Column="5" x:Name="T"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="2" Grid.Column="6" x:Name="U"  />
+                     
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="3" Grid.Column="0" x:Name="V"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="3" Grid.Column="1" x:Name="W"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="3" Grid.Column="2" x:Name="X"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="3" Grid.Column="3" x:Name="Y"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="3" Grid.Column="4" x:Name="Z"  />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="3" Grid.Column="5" x:Name="Level" />
+            <Button  Style="{StaticResource KeyBoard}" Grid.Row="3" Grid.Column="6" x:Name="Replay"  />
+
         </Grid>
-        
+
     </Grid>
 </Page>
