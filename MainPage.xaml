@@ -35,11 +35,11 @@
             </Grid.ColumnDefinitions>
             <!-- HangMan Canvas left top -->
             <Canvas x:Name="Draw" Grid.Column="0">
-                
+
             </Canvas>
             <!-- Status Canvas right top -->
             <Canvas x:Name="Stat" Grid.Column="1">
-
+                <TextBlock x:Name="CurretWord" Canvas.Top="78"  FontSize="35" Text="Default" MinWidth="400" MinHeight="100" TextAlignment="Center"  FontStretch="UltraExpanded" Canvas.Left="163" />
             </Canvas>
         </Grid>
 
@@ -70,7 +70,7 @@
             <Button Style="{StaticResource KeyBoard}" Grid.Row="0" Grid.Column="4" x:Name="E" Content="E" />
             <Button Style="{StaticResource KeyBoard}" Grid.Row="0" Grid.Column="5" x:Name="F" Content="F" />
             <Button Style="{StaticResource KeyBoard}" Grid.Row="0" Grid.Column="6" x:Name="G" Content="G" />
-                                                                                              
+
             <Button Style="{StaticResource KeyBoard}" Grid.Row="1" Grid.Column="0" x:Name="H" Content="H" />
             <Button Style="{StaticResource KeyBoard}" Grid.Row="1" Grid.Column="1" x:Name="I" Content="I" />
             <Button Style="{StaticResource KeyBoard}" Grid.Row="1" Grid.Column="2" x:Name="J" Content="G" />
@@ -78,7 +78,7 @@
             <Button Style="{StaticResource KeyBoard}" Grid.Row="1" Grid.Column="4" x:Name="L" Content="L" />
             <Button Style="{StaticResource KeyBoard}" Grid.Row="1" Grid.Column="5" x:Name="M" Content="M" />
             <Button Style="{StaticResource KeyBoard}" Grid.Row="1" Grid.Column="6" x:Name="N" Content="N" />
-                                                                                              
+
             <Button Style="{StaticResource KeyBoard}" Grid.Row="2" Grid.Column="0" x:Name="O" Content="O" />
             <Button Style="{StaticResource KeyBoard}" Grid.Row="2" Grid.Column="1" x:Name="P" Content="P" />
             <Button Style="{StaticResource KeyBoard}" Grid.Row="2" Grid.Column="2" x:Name="Q" Content="Q" />
@@ -86,7 +86,7 @@
             <Button Style="{StaticResource KeyBoard}" Grid.Row="2" Grid.Column="4" x:Name="S" Content="S" />
             <Button Style="{StaticResource KeyBoard}" Grid.Row="2" Grid.Column="5" x:Name="T" Content="T" />
             <Button Style="{StaticResource KeyBoard}" Grid.Row="2" Grid.Column="6" x:Name="U" Content="U" />
-                                                                                              
+
             <Button Style="{StaticResource KeyBoard}" Grid.Row="3" Grid.Column="0" x:Name="V" Content="V" />
             <Button Style="{StaticResource KeyBoard}" Grid.Row="3" Grid.Column="1" x:Name="W" Content="W" />
             <Button Style="{StaticResource KeyBoard}" Grid.Row="3" Grid.Column="2" x:Name="X" Content="X" />

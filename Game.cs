@@ -6,14 +6,15 @@ namespace HangManWithGameClass
 {
     public class Game
     {
-        private enum GameState { Lost, Winnery, Play }
-        private GameState state;
+        public enum GameState { Lost, Winnery, Play }
+        private GameState _state;
         private string _word;
         private StringBuilder _current;
         private char[] _totalguessedCharecters = new char[EnglishCharecters];
         private char[] _correctGuessedCharecters;
         private int _failsCount;
         private int _totalGuessCount;
+        private int _level = 1;
 
         private const int EnglishCharecters = 26;
         private const int MAXFAILURES = 10;
@@ -49,6 +50,17 @@ namespace HangManWithGameClass
             private set { _totalGuessCount = value; }
         }
 
+        public int Level
+        {
+            get { return _level; }
+            private set { _level = value <= 0 || value >= 5 ? value : 1;  } 
+        }
+
+        public GameState State 
+        {
+            get { return _state; }
+        }
+
         public char[] TotalGuessedCharecters
         {
             get { return _totalguessedCharecters; }
@@ -69,16 +81,22 @@ namespace HangManWithGameClass
                 "veterinarian","teacher", "lawyer", "accountant", "paramedic", "Nurse ,architect"
                 ,"waiter","painter","photographer"};
         }
+
+        public void ChangeLevel()
+        {
+            Level++;
+        }
+
         public Game()
         {
             Current = new StringBuilder();
             NewGme();
         }
 
-        private void NewGme()
+        public void NewGme()
         /*Initilize the new game state or replay it*/
         {
-            state = GameState.Play;
+            _state = GameState.Play;
             Current = new StringBuilder();
             GenarateWord();
             CorrectGuessedCharecters = new char[WordLength];
@@ -90,7 +108,7 @@ namespace HangManWithGameClass
         /*Check letter IFF the game is playing , its a letter and didnt guessed it already
          Then update game state if needed calling CheckGame methods */
         {
-            if (state == GameState.Play && char.IsLetter(g) && !IsGuessed(g))
+            if (_state == GameState.Play && char.IsLetter(g) && !IsGuessed(g))
             {
                 g = char.ToLower(g);
                 TotalGuessedCharecters[TotalGuessCount] = g;
@@ -108,7 +126,7 @@ namespace HangManWithGameClass
                 }
                 else
                 {
-                    FailsCount++;
+                    FailsCount+=_level;
                 }
             }
             CheckGame();
@@ -135,16 +153,16 @@ namespace HangManWithGameClass
             Current.Append('_', WordLength);
 
         }
-        public void CheckGame()
+        private void CheckGame()
         /*Check whether the game state need to change*/
         {
             if (_failsCount >= MAXFAILURES)
             {
-                state = GameState.Lost;
+                _state = GameState.Lost;
             }
             else if (Word == Current.ToString())
             {
-                state = GameState.Winnery;
+                _state = GameState.Winnery;
             }
         }
 
