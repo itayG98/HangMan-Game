@@ -15,10 +15,13 @@
             <RowDefinition x:Name="Down" />
         </Grid.RowDefinitions>
 
-        <Canvas x:Name="HangManCan" Grid.Row="0" Background="Bisque">
-            <!-- HangMan can -->
-
-        </Canvas>
+        <Grid x:Name="HangManGrid" Grid.Row="0" Background="Bisque">
+            <!-- HangMan grid -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="Draw" Width="1*"/>
+                <ColumnDefinition x:Name="Stat" Width="1*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
 
         <Grid x:Name="KeysGrid" Grid.Row="1" Background="LightGreen" Padding="10">
             <!-- Keys grid  -->

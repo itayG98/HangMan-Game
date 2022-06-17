@@ -38,7 +38,7 @@ namespace HangManWithGameClass
             hangman = new Game();
             Window = ApplicationView.GetForCurrentView().VisibleBounds;
 
-            HangManCan.Background = new SolidColorBrush(Color.FromArgb(200, 252, 249, 198));
+            HangManGrid.Background = new SolidColorBrush(Color.FromArgb(200, 252, 249, 198));
             KeysGrid.Background = new SolidColorBrush(Color.FromArgb(200, 158, 178, 59));
 
         }
