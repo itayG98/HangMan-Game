@@ -63,7 +63,7 @@ namespace HangManWithGameClass
             TextBlock txb = new TextBlock();
             Canvas.SetLeft(txb, win.Width / 2);
             Canvas.SetTop(txb, win.Height / 2);
-            txb.Text = hangman.GetCurrent();
+            txb.Text = hangman.GetCurrentString();
             return txb;
         }
     }

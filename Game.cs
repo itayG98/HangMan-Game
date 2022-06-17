@@ -8,7 +8,6 @@ namespace HangManWithGameClass
     {
         private enum GameState { Lost, Winnery, Play }
         private GameState state;
-        private bool IsLost;
         private string _word;
         private StringBuilder _current;
         private char[] _totalguessedCharecters = new char[EnglishCharecters];
@@ -77,8 +76,10 @@ namespace HangManWithGameClass
         }
 
         private void NewGme()
+        /*Initilize the new game state or replay it*/
         {
-            IsLost = false;
+            state = GameState.Play;
+            Current = new StringBuilder();
             GenarateWord();
             CorrectGuessedCharecters = new char[WordLength];
             FailsCount = 0;
@@ -86,14 +87,14 @@ namespace HangManWithGameClass
         }
 
         public void GuessLetter(char g)
+        /*Check letter IFF the game is playing , its a letter and didnt guessed it already
+         Then update game state if needed calling CheckGame methods */
         {
-            if (char.IsLetter(g) && state == GameState.Play)
+            if (state == GameState.Play && char.IsLetter(g) && !IsGuessed(g))
             {
                 g = char.ToLower(g);
-                /*TODO Non repetative addidng*/
                 TotalGuessedCharecters[TotalGuessCount] = g;
                 TotalGuessCount++;
-
                 if (Word.IndexOf(g) != -1)
                 {
                     CorrectGuessedCharecters[TotalGuessCount - FailsCount - 1] = g;
@@ -113,7 +114,20 @@ namespace HangManWithGameClass
             CheckGame();
         }
 
-        public void GenarateWord()
+        private bool IsGuessed(char g)
+        /*Return whether the letter already guessed*/
+        {
+            foreach(char letter in TotalGuessedCharecters) 
+            {
+                if (letter == g) 
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void GenarateWord()
         /* Genarate a random word in lower case*/
         {
             Word = _vocabulary[_random.Next(0, _vocabulary.Length)].ToLower();
@@ -121,6 +135,7 @@ namespace HangManWithGameClass
 
         }
         public void CheckGame()
+        /*Check whether the game state need to change*/
         {
             if (_failsCount >= MAXFAILURES)
             {
@@ -132,14 +147,13 @@ namespace HangManWithGameClass
             }
         }
 
-        public string GetCurrent()
+        public string GetCurrentString()
+        /*Convert the StringBuilder Current to string and return it*/
         {
             return Current.ToString();
         }
     }
 }
-
-
 
 
 
