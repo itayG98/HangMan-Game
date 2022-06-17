@@ -39,16 +39,7 @@ namespace HangManWithGameClass
             Window = ApplicationView.GetForCurrentView().VisibleBounds;
 
             HangManCan.Background = new SolidColorBrush(Color.FromArgb(200, 252, 249, 198));
-            HangManCan.Height = Window.Height / 2;
-            HangManCan.Width = Window.Width;
-            Canvas.SetTop(HangManCan, 0);
-            Canvas.SetLeft(HangManCan, 0);
-
-            KeysCan.Background = new SolidColorBrush(Color.FromArgb(200, 158, 178, 59));
-            KeysCan.Height = Window.Height / 2;
-            KeysCan.Width = Window.Width;
-            Canvas.SetTop(KeysCan, Window.Height / 2);
-            Canvas.SetLeft(KeysCan, 0);
+            KeysGrid.Background = new SolidColorBrush(Color.FromArgb(200, 158, 178, 59));
 
         }
     }

@@ -8,13 +8,28 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Canvas x:Name="FatherCan">
-        <Canvas x:Name="HangManCan">
+    <Grid x:Name="FatherGrid">
+        <!-- Page grid separated into 2 -->
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="Up" />
+            <RowDefinition x:Name="Down" />
+        </Grid.RowDefinitions>
+
+        <Canvas x:Name="HangManCan" Grid.Row="0">
+            <!-- HangMan can -->
+
         </Canvas>
-        <Canvas x:Name="KeysCan">
-            <Grid x:Name="KeysGrid">
-                
-                </Grid>
-        </Canvas>
-    </Canvas>
+
+        <Grid x:Name="KeysGrid" Grid.Row="1">
+            <!-- Keys grid  -->
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="Auto" />
+                <RowDefinition  Height="Auto" />
+                <RowDefinition  Height="Auto" />
+                <RowDefinition  Height="Auto" />
+            </Grid.RowDefinitions>
+            
+        </Grid>
+        
+    </Grid>
 </Page>
