@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -23,48 +24,32 @@ namespace HangManWithGameClass
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     /// 
-    
+    // Color template https://colorhunt.co/palette/9eb23bc7d36ffcf9c6e0deca 
+
     public sealed partial class MainPage : Page
     {
         private Game hangman;
-        private Rect win;
+        private Rect Window;
         private TextBlock tx;
         public MainPage()
         {
             this.InitializeComponent();
 
             hangman = new Game();
-            win = ApplicationView.GetForCurrentView().VisibleBounds;
-            ExampleGuess();
-            tx = GenerateExmpTextBox();
-            Can.Children.Add(tx);
-            tx.Text += hangman.TotalGuessCount;
+            Window = ApplicationView.GetForCurrentView().VisibleBounds;
 
-        }
+            HangManCan.Background = new SolidColorBrush(Color.FromArgb(200, 252, 249, 198));
+            HangManCan.Height = Window.Height / 2;
+            HangManCan.Width = Window.Width;
+            Canvas.SetTop(HangManCan, 0);
+            Canvas.SetLeft(HangManCan, 0);
 
-        public void ExampleGuess() 
-        {
-            hangman.GuessLetter('e');
-            hangman.GuessLetter('a');
-            hangman.GuessLetter('e');
-            hangman.GuessLetter('i');
-            hangman.GuessLetter('e');
-            hangman.GuessLetter('a');
-            hangman.GuessLetter('e');
-            hangman.GuessLetter('i');
-            hangman.GuessLetter('e');
-            hangman.GuessLetter('a');
-            hangman.GuessLetter('e');
-            hangman.GuessLetter('i');
-        }
+            KeysCan.Background = new SolidColorBrush(Color.FromArgb(200, 158, 178, 59));
+            KeysCan.Height = Window.Height / 2;
+            KeysCan.Width = Window.Width;
+            Canvas.SetTop(KeysCan, Window.Height / 2);
+            Canvas.SetLeft(KeysCan, 0);
 
-        public TextBlock GenerateExmpTextBox ()
-        {
-            TextBlock txb = new TextBlock();
-            Canvas.SetLeft(txb, win.Width / 2);
-            Canvas.SetTop(txb, win.Height / 2);
-            txb.Text = hangman.GetCurrentString();
-            return txb;
         }
     }
 }

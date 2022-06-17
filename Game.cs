@@ -117,6 +117,7 @@ namespace HangManWithGameClass
         private bool IsGuessed(char g)
         /*Return whether the letter already guessed*/
         {
+            Char.ToLower(g);
             foreach(char letter in TotalGuessedCharecters) 
             {
                 if (letter == g) 

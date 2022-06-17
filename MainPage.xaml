@@ -8,8 +8,13 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid x:Name="FatherGrid">
-        <Canvas x:Name="Can">
+    <Canvas x:Name="FatherCan">
+        <Canvas x:Name="HangManCan">
         </Canvas>
-    </Grid>
+        <Canvas x:Name="KeysCan">
+            <Grid x:Name="KeysGrid">
+                
+                </Grid>
+        </Canvas>
+    </Canvas>
 </Page>
