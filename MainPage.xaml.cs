@@ -1,4 +1,5 @@
-﻿using Windows.UI;
+﻿using System;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -19,11 +20,11 @@ namespace HangManWithGameClass
         public MainPage()
         {
             this.InitializeComponent();
+            HideHangedMan();
             CreateEventForBtn();
             /*Sets the colours*/
             HangManGrid.Background = new SolidColorBrush(Color.FromArgb(200, 252, 249, 198));
             KeysGrid.Background = new SolidColorBrush(Color.FromArgb(200, 158, 178, 59));
-
             hangman = new Game();
             UpdateGame();
         }
@@ -37,6 +38,7 @@ namespace HangManWithGameClass
         }
 
         private void Btn_Click(object sender, RoutedEventArgs e)
+        /*play keyboard's apropriate action if game is on or replays if game is not on */
         {
             if (hangman.State == Game.GameState.Play)
             {
@@ -56,12 +58,14 @@ namespace HangManWithGameClass
                     }
                     else if (key == "Replay")
                     {
+                        HideHangedMan();
                         hangman.NewGme();
+
                     }
                 }
                 UpdateGame();
             }
-            else 
+            else
             {
                 hangman.NewGme();
                 UpdateGame();
@@ -86,14 +90,112 @@ namespace HangManWithGameClass
                         break;
                     }
             }
+            showHangedMan(hangman.FailsCount);
         }
 
-        public void Lose()
+        private void showHangedMan(int failsCount)
+        {
+            switch (failsCount)
+            {
+                case 0:
+                    {
+                        _0.Visibility = Visibility.Visible;
+                        break;
+                    }
+                case 1:
+                    {
+                        _0.Visibility = Visibility.Visible;
+                        _1.Visibility = Visibility.Visible;
+                        break;
+                    }
+                case 2:
+                    {
+                        _0.Visibility = Visibility.Visible;
+                        _1.Visibility = Visibility.Visible;
+                        _2.Visibility = Visibility.Visible;
+                        break;
+                    }
+                case 3:
+                    {
+                        _1.Visibility = Visibility.Visible;
+                        _2.Visibility = Visibility.Visible;
+                        _3.Visibility = Visibility.Visible;
+                        break;
+                    }
+                case 4:
+                    {
+                        _2.Visibility = Visibility.Visible;
+                        _3.Visibility = Visibility.Visible;
+                        _4.Visibility = Visibility.Visible;
+                        break;
+                    }
+                case 5:
+                    {
+                        _3.Visibility = Visibility.Visible;
+                        _4.Visibility = Visibility.Visible;
+                        _5.Visibility = Visibility.Visible;
+                        break;
+                    }
+                case 6:
+                    {
+                        _4.Visibility = Visibility.Visible;
+                        _5.Visibility = Visibility.Visible;
+                        _6.Visibility = Visibility.Visible;
+                        break;
+                    }
+                case 7:
+                    {
+                        _5.Visibility = Visibility.Visible;
+                        _6.Visibility = Visibility.Visible;
+                        _7.Visibility = Visibility.Visible;
+                        break;
+                    }
+                case 8:
+                    {
+                        _6.Visibility = Visibility.Visible;
+                        _7.Visibility = Visibility.Visible;
+                        _8.Visibility = Visibility.Visible;
+                        break;
+                    }
+                case 9:
+                    {
+                        _7.Visibility = Visibility.Visible;
+                        _8.Visibility = Visibility.Visible;
+                        _9.Visibility = Visibility.Visible;
+                        break;
+                    }
+                case 10:
+                    {
+                        _8.Visibility = Visibility.Visible;
+                        _9.Visibility = Visibility.Visible;
+                        _10.Visibility = Visibility.Visible;
+                        break;
+                    }
+            }
+        }
+
+        private void HideHangedMan()
+        /*Hides hangman*/
+        {
+            _0.Visibility = Visibility.Collapsed;
+            _1.Visibility = Visibility.Collapsed;
+            _2.Visibility = Visibility.Collapsed;
+            _3.Visibility = Visibility.Collapsed;
+            _4.Visibility = Visibility.Collapsed;
+            _5.Visibility = Visibility.Collapsed;
+            _6.Visibility = Visibility.Collapsed;
+            _7.Visibility = Visibility.Collapsed;
+            _8.Visibility = Visibility.Collapsed;
+            _9.Visibility = Visibility.Collapsed;
+            _10.Visibility = Visibility.Collapsed;
+        }
+
+        private void Lose()
         {
             CurretWord.Text += "\nUnfortunately you lost";
         }
 
-        public void Win()
+        private void Win()
         {
             CurretWord.Text += "\nWell Done";
         }

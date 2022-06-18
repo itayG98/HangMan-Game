@@ -52,7 +52,7 @@ namespace HangManWithGameClass
         public int Level
         {
             get { return _level; }
-            private set { _level = value <= 0 || value >= 5 ? 1 : value; }
+            private set { _level = value <= 0 || value >= 3 ? 1 : value; }
         }
 
         public GameState State
