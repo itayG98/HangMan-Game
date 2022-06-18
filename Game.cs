@@ -63,7 +63,7 @@ namespace HangManWithGameClass
         public char[] TotalGuessedCharecters
         {
             get { return _totalguessedCharecters; }
-            private set { _correctGuessedCharecters = value; }
+            private set { _totalguessedCharecters = value; }
         }
 
         public char[] CorrectGuessedCharecters
@@ -79,6 +79,16 @@ namespace HangManWithGameClass
             "doctor", "solider", "Policeman", "bartender", "dentist", "pharmacist", "physician",
                 "veterinarian","teacher", "lawyer", "accountant", "paramedic", "Nurse ,architect"
                 ,"waiter","painter","photographer"};
+        }
+
+        public string TotalGuessedCharectersString()
+        {
+            StringBuilder sb = new StringBuilder("");
+            foreach (char letter in TotalGuessedCharecters)
+            {
+                sb.Append(letter + " ");
+            }
+            return sb.ToString();
         }
 
         public void ChangeLevel()
@@ -107,7 +117,7 @@ namespace HangManWithGameClass
         /*Check letter IFF the game is playing , its a letter and didnt guessed it already
          Then update game state if needed calling CheckGame methods */
         {
-            if (!IsGuessed(g) && State == GameState.Play && char.IsLetter(g))
+            if (char.IsLetter(g) && !IsGuessed(char.ToLower(g)) && State == GameState.Play)
             {
                 g = char.ToLower(g);
                 TotalGuessedCharecters[TotalGuessCount] = g;

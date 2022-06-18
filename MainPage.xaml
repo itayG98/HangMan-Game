@@ -40,8 +40,10 @@
             <!-- Status Canvas right top -->
             <Canvas x:Name="Stat" Grid.Column="1">
                 <TextBlock x:Name="LevelHeadLine" Canvas.Top="0"  FontSize="40" Text="Level : 1" MinWidth="400" MinHeight="120" TextAlignment="Center"  FontStretch="UltraExpanded" Canvas.Left="163" />
-
                 <TextBlock x:Name="CurretWord" Canvas.Top="150"  FontSize="50" Text="Default" MinWidth="400" MinHeight="100" TextAlignment="Center"  FontStretch="UltraExpanded" Canvas.Left="163" />
+                <TextBlock x:Name="GueesedLetters" Canvas.Top="300"  FontSize="50" Text="" MinWidth="400" MinHeight="100" TextAlignment="Center"  FontStretch="UltraExpanded" Canvas.Left="163" />
+
+
             </Canvas>
         </Grid>
 

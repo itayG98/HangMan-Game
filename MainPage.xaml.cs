@@ -8,8 +8,7 @@ using Windows.UI.Xaml.Media;
 namespace HangManWithGameClass
 {
     /// <summary>
-    /// HangMan UWP game X86 is better 
-    /// QA needed
+    /// HangMan UWP game X86 runs it better 
     /// </summary>
     /// 
     // Color template https://colorhunt.co/palette/9eb23bc7d36ffcf9c6e0deca 
@@ -73,6 +72,7 @@ namespace HangManWithGameClass
         {
             CurretWord.Text = hangman.GetCurrentString();
             LevelHeadLine.Text = $"Level : {hangman.Level}\n{hangman.WordLength} letrers";
+            GueesedLetters.Text = hangman.TotalGuessedCharectersString();
             switch (hangman.State)
             {
                 case Game.GameState.Winnery:
