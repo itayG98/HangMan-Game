@@ -162,7 +162,8 @@ namespace HangManWithGameClass
         }
 
         private void GenarateWord()
-        /* Genarate a random word in lower case*/
+        /* Genarate a random word in lower case
+         initialize an apropriate Current var*/
         {
             Word = _vocabulary[_random.Next(0, _vocabulary.Length)].ToLower();
             Current = new StringBuilder("");
@@ -171,6 +172,10 @@ namespace HangManWithGameClass
             {
                 if (Word[i] == ' ')
                     Current[i] = ' ';
+                else if (Word[i] == '-') 
+                {
+                    Current[i] = '-';
+                }
             }
         }
         private void CheckGame()
