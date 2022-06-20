@@ -24,17 +24,23 @@ namespace HangManWithGameClass
         public MainPage()
         {
             this.InitializeComponent();
+            HideHangedMan();
+            hangman = new Game();
+            UpdateGame();
+            CreateEventForBtn();
+            setColors();
             hangManParts = new List<UIElement> {
                 _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10
             };
-            HideHangedMan();
-            CreateEventForBtn();
+        }
+
+        private void setColors()
+        {
             /*Sets the colours*/
             HangManGrid.Background = new SolidColorBrush(Color.FromArgb(200, 252, 249, 198));
             KeysGrid.Background = new SolidColorBrush(Color.FromArgb(200, 158, 178, 59));
-            hangman = new Game();
-            UpdateGame();
         }
+
         public void CreateEventForBtn()
         /*Create event handler to each btn*/
         {
