@@ -3,9 +3,9 @@ using System.Text;
 
 namespace HangManWithGameClass
 {
+        public enum GameState { Lost, Winnery, Play }
     public class Game
     {
-        public enum GameState { Lost, Winnery, Play }
         private GameState _state;
         private string _word;
         private StringBuilder _current;
@@ -71,6 +71,11 @@ namespace HangManWithGameClass
             get { return _correctGuessedCharecters; }
             private set { _correctGuessedCharecters = value; }
         }
+
+        public int MaxFailures 
+        {
+            get { return MAXFAILURES; }
+        } 
 
         static Game()
         {

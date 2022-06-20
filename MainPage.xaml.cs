@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -17,9 +18,15 @@ namespace HangManWithGameClass
     public sealed partial class MainPage : Page
     {
         private Game hangman;
+        private List<UIElement> hangManParts;
+
+
         public MainPage()
         {
             this.InitializeComponent();
+            hangManParts = new List<UIElement> {
+                _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10
+            };
             HideHangedMan();
             CreateEventForBtn();
             /*Sets the colours*/
@@ -40,7 +47,7 @@ namespace HangManWithGameClass
         private void Btn_Click(object sender, RoutedEventArgs e)
         /*play keyboard's apropriate action if game is on or replays if game is not on */
         {
-            if (hangman.State == Game.GameState.Play)
+            if (hangman.State == GameState.Play)
             {
                 Button b = (Button)sender;
                 bool isLetter = char.TryParse(b.Name, out char letter);
@@ -79,12 +86,12 @@ namespace HangManWithGameClass
             GueesedLetters.Text = hangman.TotalGuessedCharectersString();
             switch (hangman.State)
             {
-                case Game.GameState.Winnery:
+                case GameState.Winnery:
                     {
                         Win();
                         break;
                     }
-                case Game.GameState.Lost:
+                case GameState.Lost:
                     {
                         Lose();
                         break;
@@ -93,84 +100,14 @@ namespace HangManWithGameClass
             showHangedMan(hangman.FailsCount);
         }
 
-        private void showHangedMan(int failsCount)
+        public void showHangedMan(int failCount)
         {
-            switch (failsCount)
+            for (int i = failCount - 1; i < hangman.MaxFailures && i < failCount; i++)
             {
-                case 0:
-                    {
-                        _0.Visibility = Visibility.Visible;
-                        break;
-                    }
-                case 1:
-                    {
-                        _0.Visibility = Visibility.Visible;
-                        _1.Visibility = Visibility.Visible;
-                        break;
-                    }
-                case 2:
-                    {
-                        _0.Visibility = Visibility.Visible;
-                        _1.Visibility = Visibility.Visible;
-                        _2.Visibility = Visibility.Visible;
-                        break;
-                    }
-                case 3:
-                    {
-                        _1.Visibility = Visibility.Visible;
-                        _2.Visibility = Visibility.Visible;
-                        _3.Visibility = Visibility.Visible;
-                        break;
-                    }
-                case 4:
-                    {
-                        _2.Visibility = Visibility.Visible;
-                        _3.Visibility = Visibility.Visible;
-                        _4.Visibility = Visibility.Visible;
-                        break;
-                    }
-                case 5:
-                    {
-                        _3.Visibility = Visibility.Visible;
-                        _4.Visibility = Visibility.Visible;
-                        _5.Visibility = Visibility.Visible;
-                        break;
-                    }
-                case 6:
-                    {
-                        _4.Visibility = Visibility.Visible;
-                        _5.Visibility = Visibility.Visible;
-                        _6.Visibility = Visibility.Visible;
-                        break;
-                    }
-                case 7:
-                    {
-                        _5.Visibility = Visibility.Visible;
-                        _6.Visibility = Visibility.Visible;
-                        _7.Visibility = Visibility.Visible;
-                        break;
-                    }
-                case 8:
-                    {
-                        _6.Visibility = Visibility.Visible;
-                        _7.Visibility = Visibility.Visible;
-                        _8.Visibility = Visibility.Visible;
-                        break;
-                    }
-                case 9:
-                    {
-                        _7.Visibility = Visibility.Visible;
-                        _8.Visibility = Visibility.Visible;
-                        _9.Visibility = Visibility.Visible;
-                        break;
-                    }
-                case 10:
-                    {
-                        _8.Visibility = Visibility.Visible;
-                        _9.Visibility = Visibility.Visible;
-                        _10.Visibility = Visibility.Visible;
-                        break;
-                    }
+                if (i < 0)
+                    continue;
+                else
+                    hangManParts[i].Visibility = Visibility.Visible;
             }
         }
 
