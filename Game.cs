@@ -1,15 +1,16 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 
 namespace HangManWithGameClass
 {
-        public enum GameState { Lost, Winnery, Play }
+    public enum GameState { Lost, Winnery, Play }
     public class Game
     {
         private GameState _state;
         private string _word;
         private StringBuilder _current;
-        private char[] _totalguessedCharecters = new char[EnglishCharecters];
+        private char[] _totalguessedCharecters;
         private char[] _correctGuessedCharecters;
         private int _failsCount;
         private int _totalGuessCount;
@@ -19,6 +20,7 @@ namespace HangManWithGameClass
         private const int MAXFAILURES = 10;
         private static Random _random;
         private static readonly string[] _vocabulary;
+        private static string[] wordBank;
 
         private string Word
         {
@@ -52,7 +54,7 @@ namespace HangManWithGameClass
         public int Level
         {
             get { return _level; }
-            private set { _level = value <= 0 || value >= 3 ? 1 : value; }
+            private set { _level = value <= 0 || value > 3 ? 1 : value; }
         }
 
         public GameState State
@@ -72,18 +74,19 @@ namespace HangManWithGameClass
             private set { _correctGuessedCharecters = value; }
         }
 
-        public int MaxFailures 
+        public int MaxFailures
         {
             get { return MAXFAILURES; }
-        } 
+        }
 
         static Game()
         {
             _random = new Random();
-            _vocabulary = new string[] {
-            "doctor", "solider", "Policeman", "bartender", "dentist", "pharmacist", "physician",
-                "veterinarian","teacher", "lawyer", "accountant", "paramedic", "Nurse ,architect"
-                ,"waiter","painter","photographer"};
+            /*            _vocabulary = new string[] {
+                        "doctor", "solider", "Policeman", "bartender", "dentist", "pharmacist", "physician",
+                            "veterinarian","teacher", "lawyer", "accountant", "paramedic", "Nurse ,architect"
+                            ,"waiter","painter","photographer"};*/
+            _vocabulary = LoadWordVacabulary();
         }
 
         public string TotalGuessedCharectersString()
@@ -109,6 +112,7 @@ namespace HangManWithGameClass
         public void NewGme()
         /*Initilize the new game state or replay it*/
         {
+            TotalGuessedCharecters = new char[EnglishCharecters];
             Level = 1;
             FailsCount = 0;
             TotalGuessCount = 0;
@@ -185,6 +189,14 @@ namespace HangManWithGameClass
         /*Convert the StringBuilder Current to string and return it*/
         {
             return Current.ToString();
+        }
+
+        public static string[] LoadWordVacabulary()
+        {
+            string st = File.ReadAllText(@"Assets\Name.txt");
+            string separator = @""", """;
+            string[] wordsToReturn = st.Split(separator, StringSplitOptions.None);
+            return wordsToReturn;
         }
     }
 }

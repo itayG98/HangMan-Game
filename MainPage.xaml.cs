@@ -75,6 +75,7 @@ namespace HangManWithGameClass
             else
             {
                 hangman.NewGme();
+                HideHangedMan();
                 UpdateGame();
             }
         }
@@ -101,6 +102,8 @@ namespace HangManWithGameClass
         }
 
         public void showHangedMan(int failCount)
+        /*Shows hangman aproproate parts 
+         works for every level*/
         {
             for (int i = failCount - 1; i < hangman.MaxFailures && i < failCount; i++)
             {
