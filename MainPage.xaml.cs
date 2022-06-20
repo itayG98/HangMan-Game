@@ -35,16 +35,26 @@ namespace HangManWithGameClass
                _1,_2,_3,_4,_5,_6,_7,_8,_9,_10
             };
 
-
         }
 
         private void KeyDownMethod(CoreWindow sender, KeyEventArgs args)
+        /*Calss keyResponse if game is on with apropriate charecter*/
         {
-            if (char.TryParse(args.VirtualKey.ToString(), out char key))
+            if (hangman.State == GameState.Play)
             {
-                KeyResponse(key.ToString());
+                if (char.TryParse(args.VirtualKey.ToString(), out char key))
+                {
+                    KeyResponse(key.ToString());
+                }
+            }
+            else
+            {
+                hangman.NewGme();
+                HideHangedMan();
+                UpdateGame();
             }
         }
+        
 
         private void setColors()
         /*Sets the colours*/
@@ -81,7 +91,6 @@ namespace HangManWithGameClass
         private void KeyResponse(string key)
         {
             bool isLetter = char.TryParse(key, out char letter);
-
             if (isLetter)
             {
                 hangman.GuessLetter(letter);
@@ -107,7 +116,7 @@ namespace HangManWithGameClass
         {
             CurretWord.Text = hangman.GetCurrentString();
             LevelHeadLine.Text = $"Level : {hangman.Level}\n{hangman.WordLength} letrers";
-            GueesedLetters.Text = hangman.TotalGuessedCharectersString();
+            GueesedLetters.Text = hangman.GetTotalCharectersGueesed();
             switch (hangman.State)
             {
                 case GameState.Winnery:

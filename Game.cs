@@ -18,9 +18,9 @@ namespace HangManWithGameClass
 
         private const int EnglishCharecters = 26;
         private const int MAXFAILURES = 10;
+
         private static Random _random;
         private static readonly string[] _vocabulary;
-        private static string[] wordBank;
 
         private string Word
         {
@@ -80,16 +80,13 @@ namespace HangManWithGameClass
         }
 
         static Game()
+        /*One random obj and one vacabulary for all instances */
         {
             _random = new Random();
-            /*            _vocabulary = new string[] {
-                        "doctor", "solider", "Policeman", "bartender", "dentist", "pharmacist", "physician",
-                            "veterinarian","teacher", "lawyer", "accountant", "paramedic", "Nurse ,architect"
-                            ,"waiter","painter","photographer"};*/
             _vocabulary = LoadWordVacabulary();
         }
 
-        public string TotalGuessedCharectersString()
+        public string GetTotalCharectersGueesed()
         {
             StringBuilder sb = new StringBuilder("");
             foreach (char letter in TotalGuessedCharecters)
@@ -170,7 +167,11 @@ namespace HangManWithGameClass
             Word = _vocabulary[_random.Next(0, _vocabulary.Length)].ToLower();
             Current = new StringBuilder("");
             Current.Append('_', WordLength);
-
+            for (int i = 0; i < WordLength; i++) 
+            {
+                if (Word[i] == ' ')
+                    Current[i] = ' ';
+            }
         }
         private void CheckGame()
         /*Check whether the game state need to change*/
@@ -192,6 +193,7 @@ namespace HangManWithGameClass
         }
 
         public static string[] LoadWordVacabulary()
+        /*Read local text file with names*/
         {
             string st = File.ReadAllText(@"Assets\Name.txt");
             string separator = @""", """;
