@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -29,14 +30,25 @@ namespace HangManWithGameClass
             UpdateGame();
             CreateEventForBtn();
             setColors();
+            Window.Current.CoreWindow.KeyDown += KeyDownMethod;
             hangManParts = new List<UIElement> {
-                _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10
+               _1,_2,_3,_4,_5,_6,_7,_8,_9,_10
             };
+
+
+        }
+
+        private void KeyDownMethod(CoreWindow sender, KeyEventArgs args)
+        {
+            if (char.TryParse(args.VirtualKey.ToString(), out char key))
+            {
+                KeyResponse(key.ToString());
+            }
         }
 
         private void setColors()
+        /*Sets the colours*/
         {
-            /*Sets the colours*/
             HangManGrid.Background = new SolidColorBrush(Color.FromArgb(200, 252, 249, 198));
             KeysGrid.Background = new SolidColorBrush(Color.FromArgb(200, 158, 178, 59));
         }
@@ -51,32 +63,12 @@ namespace HangManWithGameClass
         }
 
         private void Btn_Click(object sender, RoutedEventArgs e)
-        /*play keyboard's apropriate action if game is on or replays if game is not on */
+        /*Calls apropriate method if game is on or replays if game is not on */
         {
             if (hangman.State == GameState.Play)
             {
-                Button b = (Button)sender;
-                bool isLetter = char.TryParse(b.Name, out char letter);
-
-                if (isLetter)
-                {
-                    hangman.GuessLetter(letter);
-                }
-                else
-                {
-                    string key = b.Name;
-                    if (key == "Level")
-                    {
-                        hangman.ChangeLevel();
-                    }
-                    else if (key == "Replay")
-                    {
-                        HideHangedMan();
-                        hangman.NewGme();
-
-                    }
-                }
-                UpdateGame();
+                Button btn = (Button)sender;
+                KeyResponse(btn.Name);
             }
             else
             {
@@ -86,7 +78,32 @@ namespace HangManWithGameClass
             }
         }
 
+        private void KeyResponse(string key)
+        {
+            bool isLetter = char.TryParse(key, out char letter);
+
+            if (isLetter)
+            {
+                hangman.GuessLetter(letter);
+            }
+            else
+            {
+                if (key == "Level")
+                {
+                    hangman.ChangeLevel();
+                }
+                else if (key == "Replay")
+                {
+                    HideHangedMan();
+                    hangman.NewGme();
+
+                }
+            }
+            UpdateGame(); ;
+        }
+
         public void UpdateGame()
+        /*Update texts and calss show hangman*/
         {
             CurretWord.Text = hangman.GetCurrentString();
             LevelHeadLine.Text = $"Level : {hangman.Level}\n{hangman.WordLength} letrers";
@@ -111,7 +128,7 @@ namespace HangManWithGameClass
         /*Shows hangman aproproate parts 
          works for every level*/
         {
-            for (int i = failCount - 1; i < hangman.MaxFailures && i < failCount; i++)
+            for (int i = failCount - 2; i < hangman.MaxFailures && i < failCount; i++)
             {
                 if (i < 0)
                     continue;
@@ -123,7 +140,6 @@ namespace HangManWithGameClass
         private void HideHangedMan()
         /*Hides hangman*/
         {
-            _0.Visibility = Visibility.Collapsed;
             _1.Visibility = Visibility.Collapsed;
             _2.Visibility = Visibility.Collapsed;
             _3.Visibility = Visibility.Collapsed;
