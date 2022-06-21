@@ -21,25 +21,25 @@ namespace HangManWithGameClass
     {
         private Game hangman;
         private List<UIElement> hangManParts;
+        private Random r;
 
 
         public MainPage()
         {
             this.InitializeComponent();
             HideHangedMan();
-            hangman = new Game();
-            UpdateGame();
             CreateEventForBtn();
-            setColors();
+            hangman = new Game();
             Window.Current.CoreWindow.KeyDown += KeyDownMethod;
+            setUI();
+            UpdateGame();
             hangManParts = new List<UIElement> {
                _1,_2,_3,_4,_5,_6,_7,_8,_9,_10
             };
-
         }
 
         private void KeyDownMethod(CoreWindow sender, KeyEventArgs args)
-        /*Calss keyResponse if game is on with apropriate charecter*/
+        /*Calls keyResponse if game is on with apropriate charecter*/
         {
             if (hangman.State == GameState.Play)
             {
@@ -55,13 +55,24 @@ namespace HangManWithGameClass
                 UpdateGame();
             }
         }
-        
 
-        private void setColors()
+        private void setUI()
         /*Sets the colours*/
         {
             HangManGrid.Background = new SolidColorBrush(Color.FromArgb(200, 252, 249, 198));
             KeysGrid.Background = new SolidColorBrush(Color.FromArgb(200, 158, 178, 59));
+            RotateTransform myRotateTransform;
+            r = new Random();
+
+            foreach (Button btn in KeysGrid.Children)
+            {
+                myRotateTransform = new RotateTransform
+                {
+                    Angle = r.Next(-7, 7)
+                };
+                btn.RenderTransform = myRotateTransform;
+                btn.FontFamily = new FontFamily("Segoe Script");
+            }
         }
 
         public void CreateEventForBtn()
