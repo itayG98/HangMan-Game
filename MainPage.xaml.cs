@@ -161,16 +161,10 @@ namespace HangManWithGameClass
         private void HideHangedMan()
         /*Hides hangman*/
         {
-            _1.Visibility = Visibility.Collapsed;
-            _2.Visibility = Visibility.Collapsed;
-            _3.Visibility = Visibility.Collapsed;
-            _4.Visibility = Visibility.Collapsed;
-            _5.Visibility = Visibility.Collapsed;
-            _6.Visibility = Visibility.Collapsed;
-            _7.Visibility = Visibility.Collapsed;
-            _8.Visibility = Visibility.Collapsed;
-            _9.Visibility = Visibility.Collapsed;
-            _10.Visibility = Visibility.Collapsed;
+            for (int i = 1; i < hangManParts.Count; i++)
+            {
+                hangManParts[i].Visibility = Visibility.Collapsed;
+            }
         }
 
         private void Lose()
