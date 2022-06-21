@@ -5,4 +5,4 @@ I created a class for the game , A text file from the internet with 500 english 
 divided into three main parts : Hangman draw , the game ststus and a virtual keyboard .
 My game response also to keyboard pressing.
 
-![Hang-Man-Game](https://user-images.githubusercontent.com/91791115/174874902-646e7e9d-bfe9-4ed5-b81d-ee927f2ee4c1.png)
+![HangMan](https://user-images.githubusercontent.com/91791115/174875453-b196f0eb-46d1-4f00-9869-5124b3b11f61.png)
