@@ -27,15 +27,15 @@ namespace HangManWithGameClass
         public MainPage()
         {
             this.InitializeComponent();
+            hangManParts = new List<UIElement> {
+               _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10
+            };
             HideHangedMan();
             CreateEventForBtn();
             hangman = new Game();
             Window.Current.CoreWindow.KeyDown += KeyDownMethod;
             setUI();
             UpdateGame();
-            hangManParts = new List<UIElement> {
-               _1,_2,_3,_4,_5,_6,_7,_8,_9,_10
-            };
         }
 
         private void KeyDownMethod(CoreWindow sender, KeyEventArgs args)
@@ -117,7 +117,6 @@ namespace HangManWithGameClass
                 {
                     HideHangedMan();
                     hangman.NewGme();
-
                 }
             }
             UpdateGame(); ;
@@ -149,7 +148,9 @@ namespace HangManWithGameClass
         /*Shows hangman aproproate parts 
          works for every level*/
         {
-            for (int i = failCount - 2; i < hangman.MaxFailures && i < failCount; i++)
+            if (failCount > 10) 
+                failCount = 10;
+            for (int i = failCount - 3; i <= failCount; i++)
             {
                 if (i < 0)
                     continue;

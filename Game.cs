@@ -103,6 +103,7 @@ namespace HangManWithGameClass
 
         public Game()
         {
+            Level = 1;
             NewGme();
         }
 
@@ -110,7 +111,6 @@ namespace HangManWithGameClass
         /*Initilize the new game state or replay it*/
         {
             TotalGuessedCharecters = new char[EnglishCharecters];
-            Level = 1;
             FailsCount = 0;
             TotalGuessCount = 0;
             _state = GameState.Play;
