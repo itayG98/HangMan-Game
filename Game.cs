@@ -4,6 +4,12 @@ using System.Text;
 
 namespace HangManWithGameClass
 {
+
+    /// <summary>
+    /// Itay getahun 1070
+    /// /The game class load a vacabulary of 500 names in english and choose random name for the game
+    /// It manage the guesses, failours count and guessed array 
+    /// </summary>
     public enum GameState { Lost, Winnery, Play }
     public class Game
     {
@@ -168,11 +174,11 @@ namespace HangManWithGameClass
             Word = _vocabulary[_random.Next(0, _vocabulary.Length)].ToLower();
             Current = new StringBuilder("");
             Current.Append('_', WordLength);
-            for (int i = 0; i < WordLength; i++) 
+            for (int i = 0; i < WordLength; i++)
             {
                 if (Word[i] == ' ')
                     Current[i] = ' ';
-                else if (Word[i] == '-') 
+                else if (Word[i] == '-')
                 {
                     Current[i] = '-';
                 }

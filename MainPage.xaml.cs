@@ -10,10 +10,10 @@ using Windows.UI.Xaml.Media;
 
 namespace HangManWithGameClass
 {
-    /// 
+    /// Itay getahun 1070
     /// I made a simple UWP Desktop App using one C# class for the game A text file from the internet with 500 names and construct XAML page
     /// divided into three main parts : Hangm draw , the game ststus and a virtual keyboard .
-    /// My game response also with keyboard pressing.
+    /// My game handles also keyboard pressing.
     /// 
     // Color from https://colorhunt.co/palette/9eb23bc7d36ffcf9c6e0deca 
 
