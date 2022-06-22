@@ -19,8 +19,8 @@
         </Style>
     </Page.Resources>
 
-    
-    
+
+
     <Grid x:Name="FatherGrid" >
         <!-- Page grid separated into 2 -->
         <Grid.RowDefinitions>
@@ -29,55 +29,55 @@
         </Grid.RowDefinitions>
 
 
-            <Grid x:Name="HangManGrid" Background="Bisque" Grid.Row="0" >
-                <!-- HangMan grid -->
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition  Width="1*"/>
-                    <ColumnDefinition  Width="1*"/>
-                </Grid.ColumnDefinitions>
+        <Grid x:Name="HangManGrid" Background="Bisque" Grid.Row="0" >
+            <!-- HangMan grid -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="1*"/>
+                <ColumnDefinition  Width="1*"/>
+            </Grid.ColumnDefinitions>
 
-                <!-- Status Canvas right top -->
-                <Canvas x:Name="Stat" Grid.Column="1" >
-                    <TextBlock x:Name="LevelHeadLine" Canvas.Top="0"  FontSize="40" Text="Level : 1" MinWidth="400" MinHeight="120" TextAlignment="Center"  FontStretch="UltraExpanded" Canvas.Left="155" />
-                    <TextBlock x:Name="CurretWord" Canvas.Top="150"  FontSize="50" Text="Default" MinWidth="400" MinHeight="100" TextAlignment="Center"  FontStretch="UltraExpanded" Canvas.Left="155" />
-                    <TextBlock x:Name="GueesedLetters" Canvas.Top="300"  FontSize="50" Text="Gueesed Letters" MinWidth="400" MinHeight="100" TextAlignment="Center"  FontStretch="UltraExpanded" Canvas.Left="155" />
-                </Canvas>
+            <!-- Status Canvas right top -->
+            <Canvas x:Name="Stat" Grid.Column="1" >
+                <TextBlock x:Name="LevelHeadLine" Canvas.Top="0"  FontSize="40" Text="Level : 1" MinWidth="400" MinHeight="120" TextAlignment="Center"  FontStretch="UltraExpanded" Canvas.Left="155" />
+                <TextBlock x:Name="CurretWord" Canvas.Top="150"  FontSize="50" Text="Default" MinWidth="400" MinHeight="100" TextAlignment="Center"  FontStretch="UltraExpanded" Canvas.Left="155" />
+                <TextBlock x:Name="GueesedLetters" Canvas.Top="300"  FontSize="50" Text="Gueesed Letters" MinWidth="400" MinHeight="100" TextAlignment="Center"  FontStretch="UltraExpanded" Canvas.Left="155" />
+            </Canvas>
 
-                <!-- HangMan Canvas left top -->
-                <Canvas x:Name="Draw" Grid.Column="0" >
-                    <Rectangle x:Name="_0" HorizontalAlignment="Left" Height="21" Margin="100,364,0,0" Stroke="Black" VerticalAlignment="Top" Width="305"/>
-                    <Rectangle x:Name="_1" HorizontalAlignment="Left" Height="219" Margin="100,145,0,0" Stroke="Black" VerticalAlignment="Top" Width="15"/>
-                    <Rectangle x:Name="_2" HorizontalAlignment="Left" Height="9" Margin="113,156,0,0" Stroke="Black" VerticalAlignment="Top" Width="38" RadiusX="0" RadiusY="0" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                        <Rectangle.RenderTransform>
-                            <CompositeTransform Rotation="-35.089"/>
-                        </Rectangle.RenderTransform>
-                    </Rectangle>
-                    <Rectangle x:Name="_3" HorizontalAlignment="Left" Height="15" Margin="100,130,0,0" Stroke="Black" VerticalAlignment="Top" Width="180"/>
-                    <Rectangle x:Name="_4" HorizontalAlignment="Left" Height="29" Margin="200,145,0,0" Stroke="Black" VerticalAlignment="Top" Width="5"/>
-                    <Ellipse x:Name="_5" HorizontalAlignment="Left" Height="32" Margin="185,173,0,0" Stroke="Black" VerticalAlignment="Top" Width="35"/>
-                    <Rectangle x:Name="_6" HorizontalAlignment="Left" Height="80" Margin="200,205,0,0" Stroke="Black" VerticalAlignment="Top" Width="5"/>
-                    <Rectangle x:Name="_8" HorizontalAlignment="Left" Height="8" Margin="160,221,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                        <Rectangle.RenderTransform>
-                            <CompositeTransform Rotation="21.226"/>
-                        </Rectangle.RenderTransform>
-                    </Rectangle>
-                    <Rectangle x:Name="_7" HorizontalAlignment="Left" Height="8" Margin="205,222,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                        <Rectangle.RenderTransform>
-                            <CompositeTransform Rotation="-17.451"/>
-                        </Rectangle.RenderTransform>
-                    </Rectangle>
-                    <Rectangle x:Name="_9" HorizontalAlignment="Left" Height="48" Margin="184,278,0,0" Stroke="Black" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                        <Rectangle.RenderTransform>
-                            <CompositeTransform Rotation="36.222"/>
-                        </Rectangle.RenderTransform>
-                    </Rectangle>
-                    <Rectangle x:Name="_10" HorizontalAlignment="Left" Height="48" Margin="215,278,0,0" Stroke="Black" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                        <Rectangle.RenderTransform>
-                            <CompositeTransform Rotation="-36.135"/>
-                        </Rectangle.RenderTransform>
-                    </Rectangle>
-                </Canvas>
-            </Grid>
+            <!-- HangMan Canvas left top -->
+            <Canvas x:Name="Draw" Grid.Column="0" >
+                <Rectangle x:Name="_0" HorizontalAlignment="Left" Height="21" Margin="100,364,0,0" Stroke="Black" VerticalAlignment="Top" Width="305"/>
+                <Rectangle x:Name="_1" HorizontalAlignment="Left" Height="219" Margin="100,145,0,0" Stroke="Black" VerticalAlignment="Top" Width="15"/>
+                <Rectangle x:Name="_2" HorizontalAlignment="Left" Height="9" Margin="113,156,0,0" Stroke="Black" VerticalAlignment="Top" Width="38" RadiusX="0" RadiusY="0" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                    <Rectangle.RenderTransform>
+                        <CompositeTransform Rotation="-35.089"/>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle x:Name="_3" HorizontalAlignment="Left" Height="15" Margin="100,130,0,0" Stroke="Black" VerticalAlignment="Top" Width="180"/>
+                <Rectangle x:Name="_4" HorizontalAlignment="Left" Height="29" Margin="200,145,0,0" Stroke="Black" VerticalAlignment="Top" Width="5"/>
+                <Ellipse x:Name="_5" HorizontalAlignment="Left" Height="32" Margin="185,173,0,0" Stroke="Black" VerticalAlignment="Top" Width="35"/>
+                <Rectangle x:Name="_6" HorizontalAlignment="Left" Height="80" Margin="200,205,0,0" Stroke="Black" VerticalAlignment="Top" Width="5"/>
+                <Rectangle x:Name="_8" HorizontalAlignment="Left" Height="8" Margin="160,221,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                    <Rectangle.RenderTransform>
+                        <CompositeTransform Rotation="21.226"/>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle x:Name="_7" HorizontalAlignment="Left" Height="8" Margin="205,222,0,0" Stroke="Black" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                    <Rectangle.RenderTransform>
+                        <CompositeTransform Rotation="-17.451"/>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle x:Name="_9" HorizontalAlignment="Left" Height="48" Margin="184,278,0,0" Stroke="Black" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                    <Rectangle.RenderTransform>
+                        <CompositeTransform Rotation="36.222"/>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle x:Name="_10" HorizontalAlignment="Left" Height="48" Margin="215,278,0,0" Stroke="Black" VerticalAlignment="Top" Width="5" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                    <Rectangle.RenderTransform>
+                        <CompositeTransform Rotation="-36.135"/>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+            </Canvas>
+        </Grid>
 
 
         <Grid x:Name="KeysGrid" Grid.Row="1" Background="LightGreen">
