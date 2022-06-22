@@ -22,8 +22,8 @@ namespace HangManWithGameClass
         private int _totalGuessCount;
         private int _level;
 
-        private const int EnglishCharecters = 26;
-        private const int MAXFAILURES = 10;
+        private const int _ENGLISH_CHARECTERS = 26;
+        private const int _MAXFAILURES = 10;
 
         private static Random _random;
         private static readonly string[] _vocabulary;
@@ -82,7 +82,7 @@ namespace HangManWithGameClass
 
         public int MaxFailures
         {
-            get { return MAXFAILURES; }
+            get { return _MAXFAILURES; }
         }
 
         static Game()
@@ -116,32 +116,32 @@ namespace HangManWithGameClass
         public void NewGme()
         /*Initilize the new game state or replay it*/
         {
-            TotalGuessedCharecters = new char[EnglishCharecters];
+            TotalGuessedCharecters = new char[_ENGLISH_CHARECTERS];
             FailsCount = 0;
             TotalGuessCount = 0;
             _state = GameState.Play;
-            TotalGuessedCharecters = new char[EnglishCharecters];
+            TotalGuessedCharecters = new char[_ENGLISH_CHARECTERS];
             GenarateWord();
             CorrectGuessedCharecters = new char[WordLength];
         }
 
-        public void GuessLetter(char g)
+        public void GuessLetter(char guessedChar)
         /*Check letter IFF the game is playing , its a letter and didnt guessed it already
          Then update game state if needed calling CheckGame methods */
         {
-            if (char.IsLetter(g) && !IsGuessed(char.ToLower(g)) && State == GameState.Play)
+            if (char.IsLetter(guessedChar) && !IsGuessed(char.ToLower(guessedChar)) && State == GameState.Play)
             {
-                g = char.ToLower(g);
-                TotalGuessedCharecters[TotalGuessCount] = g;
+                guessedChar = char.ToLower(guessedChar);
+                TotalGuessedCharecters[TotalGuessCount] = guessedChar;
                 TotalGuessCount++;
-                if (Word.IndexOf(g) != -1)
+                if (Word.IndexOf(guessedChar) != -1)
                 {
-                    CorrectGuessedCharecters[TotalGuessCount - FailsCount - 1] = g;
+                    CorrectGuessedCharecters[TotalGuessCount - FailsCount - 1] = guessedChar;
                     for (int i = 0; i < WordLength; i++)
                     {
-                        if (Word[i] == g)
+                        if (Word[i] == guessedChar)
                         {
-                            Current[i] = g;
+                            Current[i] = guessedChar;
                         }
                     }
                 }
@@ -153,13 +153,13 @@ namespace HangManWithGameClass
             CheckGame();
         }
 
-        private bool IsGuessed(char g)
+        private bool IsGuessed(char guessedChar)
         /*Return whether the letter already guessed*/
         {
-            char.ToLower(g);
+            char.ToLower(guessedChar);
             foreach (char letter in TotalGuessedCharecters)
             {
-                if (letter == g)
+                if (letter == guessedChar)
                 {
                     return true;
                 }
@@ -187,7 +187,7 @@ namespace HangManWithGameClass
         private void CheckGame()
         /*Check whether the game state need to change*/
         {
-            if (_failsCount >= MAXFAILURES)
+            if (_failsCount >= _MAXFAILURES)
             {
                 _state = GameState.Lost;
             }

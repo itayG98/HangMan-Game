@@ -21,18 +21,17 @@ namespace HangManWithGameClass
     {
         private Game hangman;
         private List<UIElement> hangManParts;
-        private Random r;
 
 
         public MainPage()
         {
             this.InitializeComponent();
+            hangman = new Game();
             hangManParts = new List<UIElement> {
                _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10
             };
             HideHangedMan();
             CreateEventForBtn();
-            hangman = new Game();
             Window.Current.CoreWindow.KeyDown += KeyDownMethod;
             setUI();
             UpdateGame();
@@ -57,13 +56,12 @@ namespace HangManWithGameClass
         }
 
         private void setUI()
-        /*Sets the colours*/
+        /*Sets the colours and give the Keboards font and random rotation*/
         {
             HangManGrid.Background = new SolidColorBrush(Color.FromArgb(200, 252, 249, 198));
             KeysGrid.Background = new SolidColorBrush(Color.FromArgb(200, 158, 178, 59));
             RotateTransform myRotateTransform;
-            r = new Random();
-
+            Random r = new Random();
             foreach (Button btn in KeysGrid.Children)
             {
                 myRotateTransform = new RotateTransform
@@ -101,6 +99,7 @@ namespace HangManWithGameClass
         }
 
         private void KeyResponse(string key)
+            /*This methods calls the right method from Game Class*/
         {
             bool isLetter = char.TryParse(key, out char letter);
             if (isLetter)

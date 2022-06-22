@@ -19,7 +19,8 @@
         </Style>
     </Page.Resources>
 
-
+    
+    
     <Grid x:Name="FatherGrid" >
         <!-- Page grid separated into 2 -->
         <Grid.RowDefinitions>
@@ -27,10 +28,8 @@
             <RowDefinition x:Name="Down" />
         </Grid.RowDefinitions>
 
-        <Canvas>
 
-
-            <Grid x:Name="HangManGrid" Background="Bisque" Grid.Row="0" Height="500" Width="1505" >
+            <Grid x:Name="HangManGrid" Background="Bisque" Grid.Row="0" >
                 <!-- HangMan grid -->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition  Width="1*"/>
@@ -80,7 +79,6 @@
                 </Canvas>
             </Grid>
 
-        </Canvas>
 
         <Grid x:Name="KeysGrid" Grid.Row="1" Background="LightGreen">
             <!-- Keys grid  -->
