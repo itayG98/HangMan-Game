@@ -45,6 +45,12 @@ namespace HangManWithGameClass
             set { _current = value; }
         }
 
+        public string CurrentString
+        {
+            get { return Current.ToString();}
+
+        }
+
         public int FailsCount
         {
             get { return _failsCount; }
@@ -197,11 +203,6 @@ namespace HangManWithGameClass
             }
         }
 
-        public string GetCurrentString()
-        /*Convert the StringBuilder Current to string and return it*/
-        {
-            return Current.ToString();
-        }
 
         public static string[] LoadWordVacabulary()
         /*Read local text file with names*/

@@ -124,7 +124,7 @@ namespace HangManWithGameClass
         public void UpdateGame()
         /*Update texts and calss show hangman*/
         {
-            CurretWord.Text = hangman.GetCurrentString();
+            CurretWord.Text = hangman.CurrentString;
             LevelHeadLine.Text = $"Level : {hangman.Level}\n{hangman.WordLength} letrers";
             GueesedLetters.Text = hangman.GetTotalCharectersGueesed();
             switch (hangman.State)
